@@ -54,6 +54,12 @@ LISTA_PELICULAS = {
 }
 
 
+def listarTitulosPeliculas():
+    print("-----LISTA DE PELICULAS-----")
+    for np, pelicula in LISTA_PELICULAS.items():
+        print(f'Titulo: {pelicula["titulo"]}')
+    
+
 def listarPeliculas():
 
     print("---------------------ULTIMAS PELICULAS---------------------")
@@ -74,15 +80,14 @@ def listarPeliculas():
 def mostrarMenu():
     op = -1
     while(op != 5):
-        print('''
-            --------------MENÚ OPCIONES-----------
-            1.Mostrar películas
-            5.Salir''')
+        print("--------------MENÚ OPCIONES-----------\n",
+            "1.Mostrar películas\n",
+            "5.Salir")
         op = int(input("Selecciona una opción: "))
 
         match(op):
             case 1:
-                listarPeliculas()
+                listarTitulosPeliculas()
     else:
         print("Hasta pronto!")
 
