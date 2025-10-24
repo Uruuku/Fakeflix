@@ -107,8 +107,11 @@ def mostrarMenu():
             case 1:
                 listarTitulosPeliculas(LISTA_PELICULAS)
             case 2:
-                texto = input("Buscar: ")
-                buscarPelicula(texto)
+                texto = "s"
+                while texto != "n" and texto != "N":
+                    texto = input("Buscar: ")
+                    buscarPelicula(texto)
+                    texto = input("¿Continuar buscando? S/N")
     else:
         print("Hasta pronto!")
 
@@ -116,7 +119,7 @@ def mostrarMenu():
 
 
 
-#CODIGO A EJECUTAR
+#FUNCION A EJECUTAR
 mostrarMenu()
 
 
