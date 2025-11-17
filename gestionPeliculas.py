@@ -62,27 +62,52 @@ LISTA_PELICULAS = [
     }
 ]
 
-def crearPelicula():
-    pelicula = plantilla_peliculas.copy()
-    pelicula['titulo'] = input("Introduce título de la película ")
-    pelicula['sinpopsis'] = input("Introduce la sinopsis de la película ")
-    pelicula['duracion'] = input("Introduce la duración de la película ")
-    pelicula['fecha_estreno'] = input("Introduce la fecha de estreno de la película ")
-    pelicula['genero'] = input("Introduce el genero de la pelicula ")
+def crear_pelicula():
+    print("\n--- Nueva Película ---")
     
-    actor = input("Introduce el nombre de los actores del reparto separados por comas o introdúcelos uno a uno ")
-    if len(actor.split(";")) > 1:
-        pelicula['actores'] = actor.split(";")
-    else:
-        pelicula['actores'].append(actor)
+    # 1. Recolección y limpieza básica de datos (strip elimina espacios extra)
+    titulo = input("Introduce título de la película: ").strip()
+    sinopsis = input("Introduce la sinopsis: ").strip()
     
-    while input("¿Quieres añadir más? S/N").upper() != "N":
-        pelicula['actores'].append(input("Introduce el nombre del actor "))
+    # 2. Validación de tipo de dato (Duración debe ser entero)
+    while True:
+        try:
+            duracion_input = input("Introduce la duración (minutos): ")
+            duracion = int(duracion_input)
+            break
+        except ValueError:
+            print("❌ Por favor, introduce un número válido para la duración.")
 
-    pelicula['director'] = input("Introduce el nombre del director ")
-    pelicula['productora'] = input("Introduce el nombre de la productora ")
+    fecha_estreno = input("Introduce la fecha de estreno (DD/MM/AAAA): ").strip()
+    genero = input("Introduce el género: ").strip()
+    
+    # 3. Lógica de actores optimizada (List Comprehension)
+    # Se permite introducir todo de una vez separado por comas
+    actores_input = input("Introduce los actores (separados por comas): ")
+    # Esto divide por comas y limpia espacios alrededor de cada nombre
+    lista_actores = [actor.strip() for actor in actores_input.split(',') if actor.strip()]
 
-    LISTA_PELICULAS.append(pelicula)
+    director = input("Introduce el director: ").strip()
+    productora = input("Introduce la productora: ").strip()
+
+    # 4. Construcción del diccionario
+    nueva_pelicula = {
+        "titulo": titulo,
+        "sinopsis": sinopsis,
+        "duracion": duracion,
+        "fecha_estreno": fecha_estreno,
+        "genero": genero,
+        "actores": lista_actores, # Guardamos como lista para poder editar luego
+        "director": director,
+        "productora": productora,
+        "valoracion": 0.0, # Valor por defecto
+        "comentarios": {}  # Diccionario vacío por defecto
+    }
+
+    # 5. Actualización de la lista global
+    LISTA_PELICULAS.append(nueva_pelicula)
+    print(f"✅ Película '{titulo}' añadida con éxito.")
+
 
 
 

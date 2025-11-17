@@ -2,6 +2,7 @@
 Esta app pretende ser una prueba de desarrollo en la que muestro mis conocimientos sobre Python, utilizando y renovando lo que vaya aprendiendo a través del curso de Python
 '''
 import gestionPeliculas
+from pelicula import Pelicula
 
 
 
